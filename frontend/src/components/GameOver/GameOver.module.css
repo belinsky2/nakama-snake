@@ -1,0 +1,145 @@
+/**
+ * Стили для GameOver
+ */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 32px;
+  background: var(--color-bg-card);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  box-shadow: 0 0 30px rgba(255, 107, 107, 0.2);
+  animation: shake 0.5s ease, fadeIn 0.5s ease;
+  max-width: 360px;
+  width: 100%;
+}
+
+/* === Заголовок === */
+.header {
+  text-align: center;
+}
+
+.title {
+  font-size: 2rem;
+  color: var(--color-food);
+  text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+}
+
+/* === Результаты === */
+.results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.mainScore {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 40px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: var(--border-radius);
+}
+
+.scoreLabel {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.2em;
+}
+
+.scoreValue {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 900;
+  background: var(--gradient-snake);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.details {
+  display: flex;
+  gap: 24px;
+}
+
+.detailItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.detailLabel {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.detailValue {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* === Статус сохранения === */
+.saveStatus {
+  font-size: 0.9rem;
+  min-height: 24px;
+}
+
+.saving {
+  color: var(--color-text-secondary);
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.saved {
+  color: var(--color-snake-head);
+}
+
+.error {
+  color: var(--color-food);
+}
+
+/* === Кнопки === */
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.buttons button {
+  width: 100%;
+}
+
+/* === Анимации === */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-10px); }
+  40% { transform: translateX(10px); }
+  60% { transform: translateX(-5px); }
+  80% { transform: translateX(5px); }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}

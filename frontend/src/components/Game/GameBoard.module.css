@@ -1,0 +1,124 @@
+/**
+ * Стили для GameBoard
+ */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/* === Панель счёта === */
+.scorePanel {
+  display: flex;
+  gap: 32px;
+  padding: 12px 24px;
+  background: var(--color-bg-card);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.score,
+.length {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.scoreLabel {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.1em;
+}
+
+.scoreValue {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: var(--gradient-snake);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* === Обёртка поля === */
+.boardWrapper {
+  position: relative;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 
+    0 0 20px rgba(0, 255, 135, 0.2),
+    0 0 60px rgba(0, 255, 135, 0.1),
+    inset 0 0 60px rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(0, 255, 135, 0.3);
+}
+
+.canvas {
+  display: block;
+}
+
+/* === Оверлеи === */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 10, 15, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.overlayContent {
+  text-align: center;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.overlayContent h2 {
+  font-size: 2rem;
+  margin-bottom: 8px;
+  color: var(--color-text-primary);
+}
+
+.overlayContent p {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+}
+
+/* === Подсказка === */
+.hint {
+  display: flex;
+  gap: 24px;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.hint span {
+  padding: 4px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+/* === Анимации === */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
