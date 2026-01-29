@@ -1,0 +1,54 @@
+# ==============================================================================
+# 🐍 Snake Game — Docker Compose
+# ==============================================================================
+# Запуск: docker-compose up --build
+# Остановка: docker-compose down
+
+version: '3.8'
+
+services:
+  # ============================================================================
+  # Backend — FastAPI (порт 8101)
+  # ============================================================================
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: snake-backend
+    ports:
+      - "8101:8000"
+    volumes:
+      # Persist database between restarts
+      - snake-data:/app/data
+    environment:
+      - DATABASE_URL=sqlite:///./data/snake.db
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+
+  # ============================================================================
+  # Frontend — React + Nginx (порт 8100)
+  # ============================================================================
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: /api  # Relative path, nginx will proxy to backend
+    container_name: snake-frontend
+    ports:
+      - "8100:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+# ==============================================================================
+# Volumes
+# ==============================================================================
+volumes:
+  snake-data:
+    driver: local

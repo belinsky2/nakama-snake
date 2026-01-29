@@ -9,7 +9,9 @@
  */
 
 // URL backend сервера
-const API_BASE_URL = 'http://localhost:8000/api'
+// В Docker используется /api (nginx проксирует на backend)
+// В development используется полный URL
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api'
 
 /**
  * Базовая функция для HTTP запросов.

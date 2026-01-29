@@ -82,6 +82,8 @@ app.add_middleware(
         "http://localhost:3000",      # На случай если используешь другой порт
         "http://127.0.0.1:5173",      # Альтернативный адрес
         "http://127.0.0.1:3000",
+        "http://localhost:8100",      # Docker frontend
+        "http://127.0.0.1:8100",      # Docker frontend alternative
     ],
     allow_credentials=True,           # Разрешить cookies
     allow_methods=["*"],              # Разрешить все методы (GET, POST, etc.)
